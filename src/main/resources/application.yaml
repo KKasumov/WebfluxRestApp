@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/
+    name: `webflux_security_db_test`
+  r2dbc:
+    url: r2dbc:pool:mysql://localhost:3306/${spring.datasource.name}
+    username: <root>
+    password: <password>
+  flyway:
+    url: ${spring.datasource.url}${spring.datasource.name}
+    locations: classpath:db/migration
+    user: ${spring.r2dbc.username}
+    password: ${spring.r2dbc.password}
+
+app:
+  s3:
+    bucket-name: <your-s3-bucket-name>
+    key-prefix: <your-s3-key-prefix>
+    aws-access-key-id: <your-s3-aws-access-key-id>
+    aws-secret-access-key: <your-s3-aws-secret-access-key>
+
+jwt:
+  password:
+    encoder:
+      secret: FZK2DZ82odqS13e8aENggaMbb_fAkl-nJL4AEVBX43g
+      iteration: 64
+      keylength: 256
+  secret: b5f59337a612a2a7dc07328f3e7d1a04722967c7f06df20a499a7d3f91ff2a7e
+  expiration: 36000
+  issuer: k.k.
+
+
+
+
+
+
